@@ -9,6 +9,7 @@ from util import *
 import torch.nn as nn
 from torchsummaryX import summary
 
+<<<<<<< HEAD
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", type=str,default='OverNet')
@@ -24,6 +25,9 @@ def parse_args():
     return parser.parse_args()
 
 
+=======
+# Updated version
+>>>>>>> Updated
 
 
 def sample(net, dataset, cfg):
