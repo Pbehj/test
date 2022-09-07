@@ -4,40 +4,7 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 
-
-
-#Local Dense Groups (LDGs)
-class LDGs(nn.Module):
-    def __init__(self,
-                 in_channels, out_channels, wn,
-                 group=1):
-        super(LDGs, self).__init__()
-
-        self.RB1 = ResidualBlock(wn, in_channels, out_channels)
-        self.RB2 = ResidualBlock(wn, in_channels, out_channels)
-        self.RB3 = ResidualBlock(wn, in_channels, out_channels)
-
-        self.reduction1 = BasicConv2d(wn, in_channels*2, out_channels, 1, 1, 0)
-        self.reduction2 = BasicConv2d(wn, in_channels*3, out_channels, 1, 1, 0)
-        self.reduction3 = BasicConv2d(wn, in_channels*4, out_channels, 1, 1, 0)
-
-    def forward(self, x):
-        c0 = o0 = x
-
-        RB1 = self.RB1(o0)
-        concat1 = torch.cat([c0, RB1], dim=1)
-        out1 = self.reduction1(concat1)
-
-        RB2 = self.RB2(out1)
-        concat2 = torch.cat([concat1, RB2], dim=1)
-        out2 = self.reduction2(concat2)
-
-        RB3 = self.RB3(out2)
-        concat3 = torch.cat([concat2, RB3], dim=1)
-        out3 = self.reduction3(concat3)
-
-        return out3
-
+### the new version
 
 class Network(nn.Module):
 
