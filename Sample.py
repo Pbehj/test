@@ -9,25 +9,7 @@ from util import *
 import torch.nn as nn
 from torchsummaryX import summary
 
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str,default='OverNet')
-    parser.add_argument("--ckpt_path", type=str)
-    parser.add_argument("--group", type=int, default=4)
-    parser.add_argument("--sample_dir", type=str, default='sample')
-    parser.add_argument("--test_data_dir", type=str, default="dataset/Set5")
-    parser.add_argument("--scale", type=int, default=2)
-    parser.add_argument("--upscale", type=int, default=3)
-    parser.add_argument("--shave", type=int, default=20)
-    parser.add_argument("--num_gpu", type=int, default=3)
-
-    return parser.parse_args()
-
-def save_image(tensor, filename):
-    tensor = tensor.cpu()
-    ndarr = tensor.mul(255).clamp(0, 255).byte().permute(1, 2, 0).numpy()
-    im = Image.fromarray(ndarr)
-    im.save(filename)
+# Updated version
 
 
 def sample(net, dataset, cfg):
