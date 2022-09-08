@@ -5,7 +5,15 @@ import torch.nn.functional as F
 import numpy as np
 
 ### the new version
+class Scale(nn.Module):
 
+    def __init__(self, init_value=1e-3):
+        super(Scale, self).__init__()
+        self.scale = nn.Parameter(torch.FloatTensor([init_value]))
+
+    def forward(self, input):
+        return input * self.scale
+        
 class Network(nn.Module):
 
     def __init__(self, **kwargs):
